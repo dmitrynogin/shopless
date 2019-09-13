@@ -15,7 +15,9 @@ namespace Shopless.IO
         {
             Values = @string.Split(';')
                .Select(nv => nv.Split('='))
-               .ToDictionary(nv => nv[0].Trim(), nv => nv[1].Trim());
+               .ToDictionary(
+                    nv => nv[0].Trim(), 
+                    nv => string.Join("=", nv.Skip(1)).Trim());
         }
 
         IReadOnlyDictionary<string, string> Values { get; }

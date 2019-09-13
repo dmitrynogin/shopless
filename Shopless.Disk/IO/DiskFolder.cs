@@ -10,7 +10,7 @@ namespace Shopless.IO
     public sealed class DiskFolder : Folder
     {
         public static Connection String(string path) => 
-            $"Type={typeof(DiskFolder)}, {typeof(DiskFolder).Assembly};Path={path}";
+            $"Type={typeof(DiskFolder).FullName}, {typeof(DiskFolder).Assembly.GetName().Name};Path={path}";
 
         public DiskFolder()
             : this(GetTempPath())

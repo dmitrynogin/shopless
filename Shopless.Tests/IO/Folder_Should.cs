@@ -11,7 +11,7 @@ namespace Shopless.IO
         {
             Connection connection = DiskFolder.String("c:\\proj");
             Assert.AreEqual(
-                "Type=Shopless.IO.DiskFolder, Shopless.Disk, Version;Path=c:\\proj", 
+                "Type=Shopless.IO.DiskFolder, Shopless.Disk;Path=c:\\proj", 
                 $"{connection}");
         }
 
