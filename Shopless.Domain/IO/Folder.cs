@@ -8,8 +8,8 @@ namespace Shopless.IO
 {
     public abstract class Folder : Enumerable<string>
     {
-        public static Folder Open(Connection connection) => 
-            connection.Open<Folder>();
+        public static Folder Open(Connection @string) => 
+            @string.Open<Folder>();
 
         public abstract Stream Write(string file);
         public abstract Stream Read(string file);
