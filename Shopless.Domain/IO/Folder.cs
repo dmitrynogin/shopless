@@ -6,6 +6,8 @@ namespace Shopless.IO
 {
     public abstract class Folder : Enumerable<string>
     {
+        public object ForEach { get; set; }
+
         public static Folder Open(Connection @string) => 
             @string.Open<Folder>();
 

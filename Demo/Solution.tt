@@ -1,0 +1,86 @@
+﻿<#@ template debug="false" hostSpecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDte" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="System.Reflection" #> 
+<#@ import namespace="EnvDTE" #> 
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Diagnostics;
+
+namespace Shopless
+{
+    public static class Solution 
+    {
+        static IEnumerable<string> AssemblyNames => new[] {
+            <#= String.Join(", ", from name in new SolutionAssemblyNames(Host)
+                                  select $"\"{name}\"") #>
+        };
+
+        public static IEnumerable<Assembly> Assemblies => AssemblyNames
+            .Select(Load)
+            .Where(a => a != null);
+
+        [DebuggerHidden]
+        static Assembly Load(string assemblyName)
+        {
+            try
+            {
+                return Assembly.Load(new AssemblyName(assemblyName));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+}
+
+<#+
+    // https://stackoverflow.com/a/52488968/1219762
+    class SolutionAssemblyNames : IEnumerable<string>
+    {
+	    public SolutionAssemblyNames(ITextTemplatingEngineHost host)
+        {
+            Host = host;
+        }
+
+		public IEnumerator<string> GetEnumerator() => Assemblies.GetEnumerator();
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+		IEnumerable<string> Assemblies => Projects
+			.SelectMany(GetProjectAndSubProjects) 
+			.Select(p => p?.Properties?.Item("AssemblyName")?.Value as string)
+			.Distinct()
+			.Where(a => !string.IsNullOrWhiteSpace(a));
+
+		IEnumerable<Project> Projects => VisualStudio.Solution.Projects.OfType<Project>();
+
+		private static IEnumerable<EnvDTE.Project> GetProjectAndSubProjects(EnvDTE.Project project)
+		{
+			if (project.Kind == VsProjectKindSolutionFolder)
+			{
+				return project.ProjectItems
+					.OfType<EnvDTE.ProjectItem>()
+					.Select(p => p.SubProject)
+					.Where(p => p != null)
+					.SelectMany(GetProjectAndSubProjects);
+			}
+
+			return new[] { project };
+		}
+
+		// Copied from EnvDTE80.ProjectKinds.vsProjectKindSolutionFolder
+		private const string VsProjectKindSolutionFolder = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
+		DTE VisualStudio => (Host as IServiceProvider).GetService(typeof(DTE)) as DTE;
+        ITextTemplatingEngineHost Host { get; }
+    }
+#>

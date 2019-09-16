@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>Shopless</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shopless.Autofac\Shopless.Autofac.csproj" />
+    <ProjectReference Include="..\Shopless.Disk\Shopless.Disk.csproj" />
+    <ProjectReference Include="..\Shopless.Domain\Shopless.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Solution.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Solution.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Solution.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Solution.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
