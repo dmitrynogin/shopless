@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C39E890B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopless.Tests", "Shopless.Tests\Shopless.Tests.csproj", "{358C62CB-0247-4683-821B-E157E292AAD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopless.Autofac", "Shopless.Autofac\Shopless.Autofac.csproj", "{5692644A-032A-4279-8DDD-E8231FBEE108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{358C62CB-0247-4683-821B-E157E292AAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358C62CB-0247-4683-821B-E157E292AAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358C62CB-0247-4683-821B-E157E292AAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5692644A-032A-4279-8DDD-E8231FBEE108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5692644A-032A-4279-8DDD-E8231FBEE108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5692644A-032A-4279-8DDD-E8231FBEE108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5692644A-032A-4279-8DDD-E8231FBEE108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{B454C2B4-D74E-4756-8DB1-1C88F6444DE6} = {4A043ECB-4F3B-4984-B533-F680C7595B3F}
 		{4A043ECB-4F3B-4984-B533-F680C7595B3F} = {EE69B9D9-FB54-44D3-AFAA-02598CAA7FD6}
 		{358C62CB-0247-4683-821B-E157E292AAD9} = {C39E890B-049E-4359-94CD-4DB61D00AC60}
+		{5692644A-032A-4279-8DDD-E8231FBEE108} = {EE69B9D9-FB54-44D3-AFAA-02598CAA7FD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33454DCA-508F-47CB-94CB-A67CE4855361}
