@@ -19,4 +19,10 @@
     <ProjectReference Include="..\Shopless.Domain\Shopless.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

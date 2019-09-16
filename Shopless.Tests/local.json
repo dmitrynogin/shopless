@@ -1,0 +1,4 @@
+﻿{
+  "uploadFolder": "Type=Shopless.IO.DiskFolder, Shopless.Disk;Path=\\Shopless\\Upload",
+  "imageFolder": "Type=Shopless.IO.DiskFolder, Shopless.Disk;Path=\\Shopless\\Images"
+}
